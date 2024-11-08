@@ -1,5 +1,3 @@
-const { getJson } = require("serpapi");
-
 document.getElementById("search-btn").addEventListener("click", () => {
     const query = document.getElementById("search-input").value;
     
@@ -8,24 +6,26 @@ document.getElementById("search-btn").addEventListener("click", () => {
         return;
     }
 
-    // Call getJson with the search query
-    getJson(
-        {
-            api_key: "67e98a9baccc9ef786bea4f33d6830bc3a3de5a911bcebc500aa1d15aa8e6aca",
-            engine: "google",
-            q: query,
-            location: "Dubai, United Arab Emirates",
-            google_domain: "google.ae",
-            gl: "ae",
-            hl: "en",
-            tbm: "isch",
-            safe: "active",
-        },
-        (json) => {
+    // Define SerpApi endpoint with query parameters
+    const apiKey = "67e98a9baccc9ef786bea4f33d6830bc3a3de5a911bcebc500aa1d15aa8e6aca";
+    const url = `https://serpapi.com/search.json?engine=google&q=${encodeURIComponent(query)}&location=Dubai, United Arab Emirates&google_domain=google.ae&gl=ae&hl=en&tbm=isch&safe=active&api_key=${apiKey}`;
+    
+    // Use fetch to get data from SerpApi
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(json => {
             console.log(json);
             displayResults(json);
-        }
-    );
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+            alert("Error fetching search results.");
+        });
 });
 
 function displayResults(data) {
