@@ -57,6 +57,7 @@
             border-radius: 50px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
         }
 
         .search-bar input[type="text"] {
@@ -88,6 +89,18 @@
             background: linear-gradient(135deg, #ab6e45, #c77f50);
         }
 
+        /* Response Container */
+        .response-container {
+            font-size: 1rem;
+            color: #333;
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f7f5f2;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
             .container h1 {
@@ -99,6 +112,37 @@
             }
         }
     </style>
+    <script>
+        async function performSearch() {
+            // Get the search query
+            const query = document.querySelector('.search-bar input[type="text"]').value;
+            const responseContainer = document.getElementById('response');
+
+            // Check if the query is not empty
+            if (query) {
+                try {
+                    // Call the API (replace 'https://api.example.com/search' with your actual API endpoint)
+                    const response = await fetch(`https://api.example.com/search?q=${encodeURIComponent(query)}`);
+                    
+                    // Check if the response is ok
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    // Parse the response as JSON
+                    const data = await response.json();
+
+                    // Display the returned data in the response container
+                    responseContainer.textContent = data.message || 'No results found';
+                } catch (error) {
+                    // Handle any errors and display them in the response container
+                    responseContainer.textContent = `Error: ${error.message}`;
+                }
+            } else {
+                responseContainer.textContent = 'Please enter a search term.';
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -107,8 +151,11 @@
         <p>Discover furniture that fits your style and budget.</p>
         <div class="search-bar">
             <input type="text" placeholder="Search for sofas, tables, and more..." />
-            <button>Search</button>
+            <button onclick="performSearch()">Search</button>
         </div>
+        
+        <!-- Container to display the API response -->
+        <div id="response" class="response-container"></div>
     </div>
 
 </body>
