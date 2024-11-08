@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Search Engine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            font-size: 18px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 18px;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .result-item {
+            margin-bottom: 10px;
+        }
+        .result-item a {
+            font-weight: bold;
+            color: #3366CC;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Search Engine</h1>
+    <input type="text" id="search-input" placeholder="Enter name to search..." />
+    <button id="search-btn">Search</button>
+
+    <div class="results" id="results"></div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
