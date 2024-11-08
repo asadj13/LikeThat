@@ -3,64 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Search Engine</title>
+    <title>Like That - Find Furniture You'll Love</title>
     <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body */
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4e4c67, #a88b6d);
+            color: #333;
         }
-        input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            font-size: 18px;
+
+        /* Container */
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
-        button {
-            padding: 10px 15px;
-            font-size: 18px;
+
+        /* Title */
+        .container h1 {
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #4e4c67;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
-        .results {
-            margin-top: 20px;
+
+        /* Tagline */
+        .container p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 25px;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            display: none; /* Initially hidden */
+
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
-        table, th, td {
-            border: 1px solid #ddd;
+
+        .search-bar input[type="text"] {
+            flex: 1;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            background: #f7f5f2;
+            color: #333;
         }
-        th, td {
-            padding: 10px;
-            text-align: left;
+
+        .search-bar input[type="text"]::placeholder {
+            color: #aaa;
         }
-        th {
-            background-color: #f2f2f2;
+
+        .search-bar button {
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            color: #fff;
+            background: linear-gradient(135deg, #c77f50, #ab6e45);
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
-        img {
-            max-width: 100px;
+
+        .search-bar button:hover {
+            background: linear-gradient(135deg, #ab6e45, #c77f50);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container h1 {
+                font-size: 2.2rem;
+            }
+
+            .search-bar button {
+                padding: 15px 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <h1>Search Engine</h1>
-    <input type="text" id="search-input" placeholder="Enter name to search..." />
-    <button id="search-btn">Search</button>
-
-    <!-- Table for displaying results -->
-    <table id="resultsTable">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Image</th>
-                <th>Source</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-
-    <script src="app.js"></script>
+    <div class="container">
+        <h1>Like That</h1>
+        <p>Discover furniture that fits your style and budget.</p>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for sofas, tables, and more..." />
+            <button>Search</button>
+        </div>
+    </div>
 
 </body>
 </html>
