@@ -1,5 +1,5 @@
 // SerpAPI key (replace with your actual key)
-const apiKey = 'YOUR_SERPAPI_KEY';
+const apiKey = '67e98a9baccc9ef786bea4f33d6830bc3a3de5a911bcebc500aa1d15aa8e6aca';
 
 // Function to fetch search results from SerpAPI
 async function fetchSearchResults(query) {
