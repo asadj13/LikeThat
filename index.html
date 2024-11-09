@@ -3,9 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Search Bar</title>
+    <title>Modern Search Bar with Image Carousel</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Centering the content */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Styling the search bar */
+        form {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            border: none;
+            outline: none;
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border-radius: 50px;
+        }
+
+        button {
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styling the carousel */
+        .carousel {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            transition: opacity 1s ease;
+            opacity: 0;
+        }
+
+        .carousel img.active {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
+
+    <div class="carousel">
+        <img src="https://w7.pngwing.com/pngs/175/577/png-transparent-eames-lounge-chair-table-wing-chair-fredericia-furniture-table-angle-kitchen-furniture.png" alt="Furniture 1" class="active">
+        <img src="https://img.freepik.com/premium-psd/png-furniture-cushion-comfortable-relaxation_53876-201293.jpg" alt="Furniture 2">
+        <img src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3AtNDY0LXRkLTA3MDAtYS1qb2IxNDA0LnBuZw.png" alt="Furniture 3">
+        <img src="https://e7.pngegg.com/pngimages/145/1019/png-clipart-loveseat-couch-furniture-sofa-bed-design-angle-furniture.png" alt="Furniture 4">
+    </div>
 
     <form onsubmit="redirectToGoogle(event)">
         <input type="text" id="searchInput" placeholder="wooden dining table...">
@@ -45,7 +128,5 @@
             const query = document.getElementById('searchInput').value;
             window.location.href = `https://serpapi.com/search.json?engine=google&q=${encodeURIComponent(query)}&location=Dubai%2C+United+Arab+Emirates&google_domain=google.ae&gl=ae&hl=en&safe=active&tbm=isch&api_key=67e98a9baccc9ef786bea4f33d6830bc3a3de5a911bcebc500aa1d15aa8e6aca`;
         }
-    </script>
 
-</body>
-</html>
+        // Carousel rotation for images
