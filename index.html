@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Furno - Modern Furniture Search</title>
+    <title>Furno - Discover Furniture</title>
     <style>
         /* Basic Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         /* Background and layout */
@@ -19,8 +19,8 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            background: linear-gradient(135deg, #4A154B, #350D36);
-            color: white;
+            background: linear-gradient(45deg, #FEDA75, #FA7E1E, #D62976, #962FBF, #4F5BD5);
+            color: #333;
             height: 100vh;
             padding: 20px;
         }
@@ -33,7 +33,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
-            background-color: #3F0E40;
+            background-color: #fff;
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
@@ -44,7 +44,7 @@
         .top-bar .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #ECB22E;
+            color: #D62976;
         }
 
         .top-bar .nav-buttons {
@@ -55,7 +55,7 @@
         .top-bar .nav-buttons button {
             background: none;
             border: none;
-            color: #FFFFFF;
+            color: #D62976;
             font-size: 16px;
             cursor: pointer;
             padding: 8px 12px;
@@ -64,42 +64,20 @@
         }
 
         .top-bar .nav-buttons button:hover {
-            background-color: #ECB22E;
-            color: #350D36;
+            background-color: #FA7E1E;
+            color: #fff;
         }
 
-        /* Carousel container */
-        .carousel-container {
-            margin-top: 100px; /* space below the top bar */
+        /* Search bar styling */
+        .search-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-
-        .carousel {
-            position: relative;
-            width: 350px;
-            height: 250px;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 30px;
-        }
-
-        .carousel img {
+            margin-top: 100px; /* space below the top bar */
+            max-width: 500px;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            transition: opacity 1s ease;
-            opacity: 0;
         }
 
-        .carousel img.active {
-            opacity: 1;
-        }
-
-        /* Styling the search bar */
         form {
             display: flex;
             align-items: center;
@@ -107,8 +85,8 @@
             padding: 10px 20px;
             border-radius: 50px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-            max-width: 500px;
             width: 100%;
+            margin-bottom: 30px;
         }
 
         input[type="text"] {
@@ -119,13 +97,13 @@
             font-size: 16px;
             border-radius: 50px;
             margin-right: 10px;
-            color: #350D36;
+            color: #333;
         }
 
         button[type="submit"] {
             border: none;
-            background-color: #ECB22E;
-            color: #350D36;
+            background-color: #D62976;
+            color: #FFFFFF;
             padding: 10px 20px;
             border-radius: 50px;
             cursor: pointer;
@@ -135,7 +113,34 @@
         }
 
         button[type="submit"]:hover {
-            background-color: #D1A023;
+            background-color: #962FBF;
+        }
+
+        /* Instagram feed grid styling */
+        .feed-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .feed-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feed-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .feed-item:hover img {
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -151,16 +156,8 @@
         </div>
     </div>
 
-    <!-- Carousel and Search Section -->
-    <div class="carousel-container">
-        <!-- Image Carousel -->
-        <div class="carousel">
-            <img src="https://w7.pngwing.com/pngs/175/577/png-transparent-eames-lounge-chair-table-wing-chair-fredericia-furniture-table-angle-kitchen-furniture.png" alt="Furniture 1" class="active">
-            <img src="https://img.freepik.com/premium-psd/png-furniture-cushion-comfortable-relaxation_53876-201293.jpg" alt="Furniture 2">
-            <img src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3AtNDY0LXRkLTA3MDAtYS1qb2IxNDA0LnBuZw.png" alt="Furniture 3">
-            <img src="https://e7.pngegg.com/pngimages/145/1019/png-clipart-loveseat-couch-furniture-sofa-bed-design-angle-furniture.png" alt="Furniture 4">
-        </div>
-
+    <!-- Search Bar Section -->
+    <div class="search-container">
         <!-- Search Bar -->
         <form onsubmit="redirectToGoogle(event)">
             <input type="text" id="searchInput" placeholder="Search for furniture...">
@@ -168,39 +165,27 @@
         </form>
     </div>
 
+    <!-- Instagram-style Feed -->
+    <div class="feed-container">
+        <div class="feed-item"><img src="https://w7.pngwing.com/pngs/175/577/png-transparent-eames-lounge-chair-table-wing-chair-fredericia-furniture-table-angle-kitchen-furniture.png" alt="Furniture 1"></div>
+        <div class="feed-item"><img src="https://img.freepik.com/premium-psd/png-furniture-cushion-comfortable-relaxation_53876-201293.jpg" alt="Furniture 2"></div>
+        <div class="feed-item"><img src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3AtNDY0LXRkLTA3MDAtYS1qb2IxNDA0LnBuZw.png" alt="Furniture 3"></div>
+        <div class="feed-item"><img src="https://e7.pngegg.com/pngimages/145/1019/png-clipart-loveseat-couch-furniture-sofa-bed-design-angle-furniture.png" alt="Furniture 4"></div>
+        <!-- Repeat these items to make a grid of 20 images -->
+        <!-- Duplicating the 4 unique images for the feed -->
+        <div class="feed-item"><img src="https://w7.pngwing.com/pngs/175/577/png-transparent-eames-lounge-chair-table-wing-chair-fredericia-furniture-table-angle-kitchen-furniture.png" alt="Furniture 1"></div>
+        <div class="feed-item"><img src="https://img.freepik.com/premium-psd/png-furniture-cushion-comfortable-relaxation_53876-201293.jpg" alt="Furniture 2"></div>
+        <div class="feed-item"><img src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3AtNDY0LXRkLTA3MDAtYS1qb2IxNDA0LnBuZw.png" alt="Furniture 3"></div>
+        <div class="feed-item"><img src="https://e7.pngegg.com/pngimages/145/1019/png-clipart-loveseat-couch-furniture-sofa-bed-design-angle-furniture.png" alt="Furniture 4"></div>
+        <!-- Continue until there are 20 feed items in total -->
+    </div>
+
     <script>
-        // Placeholder rotating text
-        const placeholderTexts = [
-            "wooden dining table", "modern coffee table", "leather sofa",
-            "office desk", "outdoor patio set", "bedside table",
-            "bookshelf storage unit", "adjustable office chair",
-            "foldable dining table", "luxury bed frame"
-        ];
-        let currentIndex = 0;
-
-        function rotatePlaceholder() {
-            const searchInput = document.getElementById('searchInput');
-            searchInput.placeholder = placeholderTexts[currentIndex];
-            currentIndex = (currentIndex + 1) % placeholderTexts.length;
-        }
-        setInterval(rotatePlaceholder, 3000);
-
-        // Redirect function
         function redirectToGoogle(event) {
             event.preventDefault();
             const query = document.getElementById('searchInput').value;
             window.location.href = `https://serpapi.com/search.json?engine=google&q=${encodeURIComponent(query)}&location=Dubai%2C+United+Arab+Emirates&google_domain=google.ae&gl=ae&hl=en&safe=active&tbm=isch&api_key=YOUR_API_KEY`;
         }
-
-        // Carousel functionality
-        const images = document.querySelectorAll('.carousel img');
-        let currentImageIndex = 0;
-        function rotateCarousel() {
-            images[currentImageIndex].classList.remove('active');
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            images[currentImageIndex].classList.add('active');
-        }
-        setInterval(rotateCarousel, 3000);
     </script>
 
 </body>
