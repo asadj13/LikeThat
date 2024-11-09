@@ -8,11 +8,38 @@
 <body>
 
     <form onsubmit="redirectToGoogle(event)">
-        <input type="text" id="searchInput" placeholder="x2...">
+        <input type="text" id="searchInput" placeholder="wooden dining table...">
         <button type="submit">Search</button>
     </form>
 
     <script>
+        // List of commonly searched furniture items
+        const placeholderTexts = [
+            "wooden dining table",
+            "modern coffee table",
+            "leather sofa",
+            "office desk",
+            "outdoor patio set",
+            "bedside table",
+            "bookshelf storage unit",
+            "adjustable office chair",
+            "foldable dining table",
+            "luxury bed frame"
+        ];
+
+        let currentIndex = 0;
+        
+        // Function to change the placeholder text every 3 seconds
+        function rotatePlaceholder() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.placeholder = placeholderTexts[currentIndex];
+            currentIndex = (currentIndex + 1) % placeholderTexts.length;
+        }
+
+        // Start rotating the placeholder text every 3 seconds
+        setInterval(rotatePlaceholder, 3000);
+
+        // Redirect to Google Search API when form is submitted
         function redirectToGoogle(event) {
             event.preventDefault(); // Prevents the form from submitting in the usual way
             const query = document.getElementById('searchInput').value;
@@ -22,4 +49,3 @@
 
 </body>
 </html>
-
