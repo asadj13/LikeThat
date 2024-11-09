@@ -7,10 +7,18 @@
 </head>
 <body>
 
-    <form>
-        <input type="text" placeholder="Search...">
+    <form onsubmit="redirectToGoogle(event)">
+        <input type="text" id="searchInput" placeholder="xx...">
         <button type="submit">Search</button>
     </form>
+
+    <script>
+        function redirectToGoogle(event) {
+            event.preventDefault(); // Prevents the form from submitting in the usual way
+            const query = document.getElementById('searchInput').value;
+            window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        }
+    </script>
 
 </body>
 </html>
