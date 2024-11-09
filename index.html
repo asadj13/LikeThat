@@ -116,13 +116,14 @@
             background-color: #962FBF;
         }
 
-        /* Instagram feed grid styling */
+        /* Instagram-style Feed */
         .feed-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
             max-width: 1000px;
             width: 100%;
+            margin-top: 30px;
         }
 
         .feed-item {
@@ -142,6 +143,20 @@
         .feed-item:hover img {
             transform: scale(1.1);
         }
+
+        /* Box for displaying API result */
+        .result-box {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            color: #333;
+            font-size: 16px;
+            white-space: pre-wrap; /* Ensures content retains newlines */
+        }
     </style>
 </head>
 <body>
@@ -159,7 +174,7 @@
     <!-- Search Bar Section -->
     <div class="search-container">
         <!-- Search Bar -->
-        <form onsubmit="redirectToGoogle(event)">
+        <form id="searchForm" onsubmit="redirectToGoogle(event)">
             <input type="text" id="searchInput" placeholder="Search for furniture...">
             <button type="submit">Search</button>
         </form>
@@ -172,19 +187,28 @@
         <div class="feed-item"><img src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3AtNDY0LXRkLTA3MDAtYS1qb2IxNDA0LnBuZw.png" alt="Furniture 3"></div>
         <div class="feed-item"><img src="https://e7.pngegg.com/pngimages/145/1019/png-clipart-loveseat-couch-furniture-sofa-bed-design-angle-furniture.png" alt="Furniture 4"></div>
         <!-- Repeat these items to make a grid of 20 images -->
-        <!-- Duplicating the 4 unique images for the feed -->
-        <div class="feed-item"><img src="https://w7.pngwing.com/pngs/175/577/png-transparent-eames-lounge-chair-table-wing-chair-fredericia-furniture-table-angle-kitchen-furniture.png" alt="Furniture 1"></div>
-        <div class="feed-item"><img src="https://img.freepik.com/premium-psd/png-furniture-cushion-comfortable-relaxation_53876-201293.jpg" alt="Furniture 2"></div>
-        <div class="feed-item"><img src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3AtNDY0LXRkLTA3MDAtYS1qb2IxNDA0LnBuZw.png" alt="Furniture 3"></div>
-        <div class="feed-item"><img src="https://e7.pngegg.com/pngimages/145/1019/png-clipart-loveseat-couch-furniture-sofa-bed-design-angle-furniture.png" alt="Furniture 4"></div>
-        <!-- Continue until there are 20 feed items in total -->
     </div>
 
+    <!-- Box for displaying the fetched content -->
+    <div id="resultBox" class="result-box"></div>
+
     <script>
-        function redirectToGoogle(event) {
+        // Fetches the result from SerpApi and displays it in the result box
+        async function redirectToGoogle(event) {
             event.preventDefault();
             const query = document.getElementById('searchInput').value;
-            window.location.href = `https://serpapi.com/search.json?engine=google&q=${encodeURIComponent(query)}&location=Dubai%2C+United+Arab+Emirates&google_domain=google.ae&gl=ae&hl=en&safe=active&tbm=isch&api_key=YOUR_API_KEY`;
+            const url = `https://serpapi.com/search.json?engine=google&q=${encodeURIComponent(query)}&location=Dubai%2C+United+Arab+Emirates&google_domain=google.ae&gl=ae&hl=en&safe=active&tbm=isch&api_key=YOUR_API_KEY`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                // Display the raw data in the result box
+                document.getElementById('resultBox').innerText = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('resultBox').innerText = 'Error fetching data';
+                console.error('Error fetching data:', error);
+            }
         }
     </script>
 
