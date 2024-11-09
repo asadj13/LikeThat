@@ -3,68 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Search Bar with Image Carousel</title>
+    <title>Furno - Modern Furniture Search</title>
     <style>
         /* Basic Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Centering the content */
+        /* Background and layout */
         body {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f4f4f9;
             flex-direction: column;
+            background: linear-gradient(135deg, #4A154B, #350D36);
+            color: white;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        /* Top Bar Styling */
+        .top-bar {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #3F0E40;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 20px;
+            z-index: 10;
+        }
+
+        .top-bar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ECB22E;
+        }
+
+        .top-bar .nav-buttons {
+            display: flex;
             gap: 20px;
         }
 
-        /* Styling the search bar */
-        form {
-            display: flex;
-            align-items: center;
-            background-color: #fff;
-            padding: 10px 20px;
-            border-radius: 50px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        input[type="text"] {
+        .top-bar .nav-buttons button {
+            background: none;
             border: none;
-            outline: none;
-            padding: 10px;
-            width: 300px;
+            color: #FFFFFF;
             font-size: 16px;
-            border-radius: 50px;
-        }
-
-        button {
-            border: none;
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 50px;
             cursor: pointer;
-            font-size: 16px;
+            padding: 8px 12px;
+            transition: background 0.3s;
+            border-radius: 8px;
         }
 
-        button:hover {
-            background-color: #0056b3;
+        .top-bar .nav-buttons button:hover {
+            background-color: #ECB22E;
+            color: #350D36;
         }
 
-        /* Styling the carousel */
+        /* Carousel container */
+        .carousel-container {
+            margin-top: 100px; /* space below the top bar */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .carousel {
             position: relative;
-            width: 400px;
-            height: 300px;
+            width: 350px;
+            height: 250px;
             overflow: hidden;
-            border-radius: 10px;
+            border-radius: 12px;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
         }
 
         .carousel img {
@@ -79,54 +98,110 @@
         .carousel img.active {
             opacity: 1;
         }
+
+        /* Styling the search bar */
+        form {
+            display: flex;
+            align-items: center;
+            background-color: #FFFFFF;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        input[type="text"] {
+            border: none;
+            outline: none;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 50px;
+            margin-right: 10px;
+            color: #350D36;
+        }
+
+        button[type="submit"] {
+            border: none;
+            background-color: #ECB22E;
+            color: #350D36;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #D1A023;
+        }
     </style>
 </head>
 <body>
 
-    <div class="carousel">
-        <img src="https://w7.pngwing.com/pngs/175/577/png-transparent-eames-lounge-chair-table-wing-chair-fredericia-furniture-table-angle-kitchen-furniture.png" alt="Furniture 1" class="active">
-        <img src="https://img.freepik.com/premium-psd/png-furniture-cushion-comfortable-relaxation_53876-201293.jpg" alt="Furniture 2">
-        <img src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3AtNDY0LXRkLTA3MDAtYS1qb2IxNDA0LnBuZw.png" alt="Furniture 3">
-        <img src="https://e7.pngegg.com/pngimages/145/1019/png-clipart-loveseat-couch-furniture-sofa-bed-design-angle-furniture.png" alt="Furniture 4">
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="logo">Furno</div>
+        <div class="nav-buttons">
+            <button onclick="alert('How it works')">How it works</button>
+            <button onclick="alert('Partner with us')">Partner with us</button>
+            <button onclick="alert('About us')">About us</button>
+        </div>
     </div>
 
-    <form onsubmit="redirectToGoogle(event)">
-        <input type="text" id="searchInput" placeholder="wooden dining table...">
-        <button type="submit">Search</button>
-    </form>
+    <!-- Carousel and Search Section -->
+    <div class="carousel-container">
+        <!-- Image Carousel -->
+        <div class="carousel">
+            <img src="https://w7.pngwing.com/pngs/175/577/png-transparent-eames-lounge-chair-table-wing-chair-fredericia-furniture-table-angle-kitchen-furniture.png" alt="Furniture 1" class="active">
+            <img src="https://img.freepik.com/premium-psd/png-furniture-cushion-comfortable-relaxation_53876-201293.jpg" alt="Furniture 2">
+            <img src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3AtNDY0LXRkLTA3MDAtYS1qb2IxNDA0LnBuZw.png" alt="Furniture 3">
+            <img src="https://e7.pngegg.com/pngimages/145/1019/png-clipart-loveseat-couch-furniture-sofa-bed-design-angle-furniture.png" alt="Furniture 4">
+        </div>
+
+        <!-- Search Bar -->
+        <form onsubmit="redirectToGoogle(event)">
+            <input type="text" id="searchInput" placeholder="Search for furniture...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
 
     <script>
-        // List of commonly searched furniture items
+        // Placeholder rotating text
         const placeholderTexts = [
-            "wooden dining table",
-            "modern coffee table",
-            "leather sofa",
-            "office desk",
-            "outdoor patio set",
-            "bedside table",
-            "bookshelf storage unit",
-            "adjustable office chair",
-            "foldable dining table",
-            "luxury bed frame"
+            "wooden dining table", "modern coffee table", "leather sofa",
+            "office desk", "outdoor patio set", "bedside table",
+            "bookshelf storage unit", "adjustable office chair",
+            "foldable dining table", "luxury bed frame"
         ];
-
         let currentIndex = 0;
-        
-        // Function to change the placeholder text every 3 seconds
+
         function rotatePlaceholder() {
             const searchInput = document.getElementById('searchInput');
             searchInput.placeholder = placeholderTexts[currentIndex];
             currentIndex = (currentIndex + 1) % placeholderTexts.length;
         }
-
-        // Start rotating the placeholder text every 3 seconds
         setInterval(rotatePlaceholder, 3000);
 
-        // Redirect to Google Search API when form is submitted
+        // Redirect function
         function redirectToGoogle(event) {
-            event.preventDefault(); // Prevents the form from submitting in the usual way
+            event.preventDefault();
             const query = document.getElementById('searchInput').value;
-            window.location.href = `https://serpapi.com/search.json?engine=google&q=${encodeURIComponent(query)}&location=Dubai%2C+United+Arab+Emirates&google_domain=google.ae&gl=ae&hl=en&safe=active&tbm=isch&api_key=67e98a9baccc9ef786bea4f33d6830bc3a3de5a911bcebc500aa1d15aa8e6aca`;
+            window.location.href = `https://serpapi.com/search.json?engine=google&q=${encodeURIComponent(query)}&location=Dubai%2C+United+Arab+Emirates&google_domain=google.ae&gl=ae&hl=en&safe=active&tbm=isch&api_key=YOUR_API_KEY`;
         }
 
-        // Carousel rotation for images
+        // Carousel functionality
+        const images = document.querySelectorAll('.carousel img');
+        let currentImageIndex = 0;
+        function rotateCarousel() {
+            images[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            images[currentImageIndex].classList.add('active');
+        }
+        setInterval(rotateCarousel, 3000);
+    </script>
+
+</body>
+</html>
