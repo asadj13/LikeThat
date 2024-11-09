@@ -8,7 +8,7 @@
 <body>
 
     <form onsubmit="redirectToGoogle(event)">
-        <input type="text" id="searchInput" placeholder="xx...">
+        <input type="text" id="searchInput" placeholder="x1...">
         <button type="submit">Search</button>
     </form>
 
@@ -16,9 +16,12 @@
         function redirectToGoogle(event) {
             event.preventDefault(); // Prevents the form from submitting in the usual way
             const query = document.getElementById('searchInput').value;
-            window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            window.location.href = `https://serpapi.com/search.html?engine=google&q=${encodeURIComponent(query)}&location=Dubai%2C+United+Arab+Emirates&google_domain=google.ae&gl=ae&hl=en&safe=active&tbm=isch&api_key=67e98a9baccc9ef786bea4f33d6830bc3a3de5a911bcebc500aa1d15aa8e6aca`;
         }
     </script>
 
 </body>
 </html>
+
+
+
